@@ -7,6 +7,7 @@ function registerSetup(setup) {
   setupGame = setup;
 }
 
+
 function main() {
   ctx.clearRect(0, 0, 1400, 750); //erase the screen so you can draw everything in it's most current position
 
@@ -361,7 +362,6 @@ function projectileCollision() {
     }
   }
 }
-
 function deathOfPlayer() {
   ctx.fillStyle = "grey";
   ctx.fillRect(
@@ -390,6 +390,10 @@ function deathOfPlayer() {
     window.location.reload();
   }
 }
+if (keyPress.any) {
+    keyPress.any = false;
+    window.location.reload();
+  }
 
 function playerFrictionAndGravity() {
   //max speed limiter for ground
