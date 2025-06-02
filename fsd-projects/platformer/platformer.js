@@ -42,9 +42,9 @@ createPlatform(800, 375, 290, 20, "blue")
     // TODO 3 - Create Collectables
     createCollectable("coin", 300, 200, 0, 0 )
 createCollectable("diamond", 225, 500, 1, 0.0 )
-createCollectable("cat", 800, 475, 1, 0.0 )
+createCollectable("emerald", 800, 475, 1, 0.0 )
 createCollectable("coin", 500, 500, 1, 0.0 )
-createCollectable("cat", 1300, 400, 0, 0.0 )
+createCollectable("emerald", 1300, 400, 0, 0.0 )
 
     
     // TODO 4 - Create Cannons
