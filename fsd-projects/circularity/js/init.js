@@ -26,10 +26,10 @@ var circles = []; // variable to store all circles in an array
 
         // TODO 2 : Create a function that draws a circle 
         function drawCircle(){
-            circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
-            physikz.addRandomVelocity(circle, canvas, 5, 5);
-            view.addChild(circle);
-            circles.push(circle);   
+            circle = draw.randomCircleInArea(canvas, true, true, "#999", 2); //creates a random circle
+            physikz.addRandomVelocity(circle, canvas, 5, 5); //adds a random velocity 
+            view.addChild(circle);// puts the circle in view
+            circles.push(circle);   //stores the circle in the array 
         }
 
 
@@ -43,8 +43,8 @@ var circles = []; // variable to store all circles in an array
 
 
         // TODO 7 : Use a loop to create multiple circles
-            for (var i = 0; i < 25; i++) {
-            drawCircle()
+            for (var i = 0; i < 100; i++) { //creates a loop until it reaches 100
+            drawCircle()// draws the circle function 
             }
 
 
@@ -75,9 +75,9 @@ var circles = []; // variable to store all circles in an array
             game.checkCirclePosition(circles[4]);
             */
             // TODO 8 / TODO 9 : Iterate over the array
-           for (var i = 0; i < circles.length; i++) {
-            physikz.updatePosition(circles[i])
-            game.checkCirclePosition(circles[i])
+           for (var i = 0; i < circles.length; i++) { //checks for how many circles their are and declare the i variable as that 
+            physikz.updatePosition(circles[i]) //updates the position of the circle
+            game.checkCirclePosition(circles[i])//checks the position of the circle
             }
             
         }
@@ -95,12 +95,12 @@ var circles = []; // variable to store all circles in an array
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            if ( circle.x < 0 ) {
-                circle.x = canvas.width;
-            }if( circle.y > canvas.height ) {
-                circle.y = 0;
-            }if( circle.y < 0 ) {
-                circle.y = canvas.height;
+            if ( circle.x < 0 ) { // makes the circle go from the left and go to the right
+                circle.x = canvas.width; // puts the circle on the right
+            }if( circle.y > canvas.height ) { // makes the circle go to the top
+                circle.y = 0;// makes the circle go from the top and go to the bottom
+            }if( circle.y < 0 ) { //makes the circle to to the bottom
+                circle.y = canvas.height;// makes the circle go from the bottom and go to the top
             }
 
 
