@@ -33,17 +33,61 @@ var runLevels = function (window) {
           sawBladeHitZone.addChild(obstacleImage);   
 
         }
-        function createEnemy(){
+        function createEnemy(x,y, speed){
         var enemy = game.createGameItem("enemy", 25);
         var redSquare = draw.rect(50, 50, "red");
         redSquare.x = -25;
         redSquare.y = -25;
         enemy.addChild(redSquare);
-        enemy.x = 400;
-        enemy.y = groundY - 50;
+        enemy.x = x;
+        enemy.y = y;
         game.addGameItem(enemy);
-        enemy.velocityX = 1;
+        enemy.velocityX = speed;
         enemy.onPlayerCollision = function () {
+          game.changeIntegrity(-10);
+
+        };
+        enemy.onProjectileCollision = function(){
+          game.increaseScore(100);
+          enemy.fadeOut();
+          //enemy.shrink();
+          //enemy.FlyTo(x,y);
+          }
+        }
+         function createReward(x,y, speed){
+        var reward = game.createGameItem("reward", 25);
+        var blueSquare = draw.rect(50, 50, "blue");
+        blueSquare.x = -25;
+        blueSquare.y = -25;
+        reward.addChild(blueSquare);
+        reward.x = x;
+        reward.y = y;
+        game.addGameItem(reward);
+        reward.velocityX = speed;
+        reward.onPlayerCollision = function () {
+          game.changeIntegrity(-10);
+          game.increaseScore(100);
+          reward.fadeOut();
+          startLevel();
+
+
+        };
+        }
+         function createMarker(x,y, speed){
+        var marker = game.createGameItem("marker", 25);
+        var yellowSquare = draw.rect(50, 50, "yellow");
+        yellowSquare.x = -25;
+        yellowSquare.y = -25;
+        marker.addChild(yellowSquare);
+        marker.x = x;
+        marker.y = y;
+        game.addGameItem(marker);
+        marker.velocityX = speed;
+        marker.onPlayerCollision = function () {
+          game.changeIntegrity(-10);
+          game.increaseScore(100);
+          marker.fadeOut();
+
 
         };
         }
@@ -54,7 +98,11 @@ var runLevels = function (window) {
         //function calls
         createSawBlade(450, groundY - 125, 50);
         createSawBlade(600, groundY - 125, 20);
-        createEnemy();
+       // createEnemy(400, groundY - 50, -3);
+       // createEnemy(400, groundY - 50, -5);
+        createReward(1000, groundY -100, -3);
+        createMarker(1500, groundY -100, -3 );
+
 
 
     function startLevel() {
