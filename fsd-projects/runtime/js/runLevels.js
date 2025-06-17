@@ -113,7 +113,7 @@ var runLevels = function (window) {
         var element = levelObjects[i]; 
 
         if(element.type === 'sawblade'){
-          createSawBlade(element.x, element.y, element.damage);
+          createSawBlade(element.x, element.y, element.damage, element.speed);
         }
 
         if(element.type === 'enemy'){
