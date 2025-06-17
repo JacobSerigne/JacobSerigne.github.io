@@ -58,7 +58,7 @@ var makeLevelData = function (window) {
         { type: "enemy", x: 2000, y: groundY - 50, speed: -3, image: 'img/droideka.png', offsetX: -30, offsetY: -90, scale: 0.15, damage: -50  }, 
         { type: "reward", x: 700, y: groundY - 100, speed: -3, image: 'img/republicCredit.png', offsetX: -30, offsetY: -30, scale: .25 },
         { type: "reward", x: 1500, y: groundY - 100, speed: -3, image: 'img/republic.png', offsetX: -30, offsetY: -30, scale: .25 },
-        { type: "reward", x: 2100, y: groundY - 100, speed: -3, image: 'img/lightsaber.png', offsetX: -30, offsetY: -30, scale: .25 },
+        { type: "reward", x: 2100, y: groundY - 100, speed: -3, image: 'img/lightsaber.png', offsetX: -30, offsetY: -10, scale: .25},
         { type: "marker", x: 3000, y: groundY - 75, speed: -3, image: 'img/kyber.png', offsetX: -30, offsetY: -30, scale: .25 },
         ],
       },
