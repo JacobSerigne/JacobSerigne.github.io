@@ -19,15 +19,14 @@ var runLevels = function (window) {
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
 
-        function createSawBlade(x,y, dmg){
+        function createSawBlade(x,y, dmg, image){
           var hitZoneSize = 25;
           var damageFromObstacle = dmg;
           var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
           sawBladeHitZone.x = x;
           sawBladeHitZone.y = y;
-          sawBladeHitZone.rotationalVelocity = 30;
           game.addGameItem(sawBladeHitZone);
-          var obstacleImage = draw.bitmap("img/sawblade.png");
+          var obstacleImage = draw.bitmap(image);
           obstacleImage.x = -25;
           obstacleImage.y = -25;
           sawBladeHitZone.addChild(obstacleImage);   
@@ -113,7 +112,7 @@ var runLevels = function (window) {
         var element = levelObjects[i]; 
 
         if(element.type === 'sawblade'){
-          createSawBlade(element.x, element.y, element.damage, element.speed);
+          createSawBlade(element.x, element.y, element.damage, element.image);
         }
 
         if(element.type === 'enemy'){
