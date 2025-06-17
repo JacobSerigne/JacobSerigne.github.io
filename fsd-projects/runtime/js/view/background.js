@@ -29,6 +29,8 @@ var background = function (window) {
         // ANIMATION VARIABLES HERE //////////////////////////////////////
         //////////////////////////////////////////////////////////////////
         // TODO (several):
+        var tieFighter
+        var xWing
         var tree;
         var buildings = [];
       
@@ -53,7 +55,13 @@ var background = function (window) {
                 circle.y = groundY * Math.random();
                 background.addChild(circle);
             }
-            var moon = draw.bitmap("img/moon.png");
+       /*     var moon = draw.bitmap("img/moon.png");
+            moon.x = canvasWidth -250;
+            moon.y = groundY - 450;
+            moon.scaleX = 0.5;
+            moon.scaleY = 0.5;
+            background.addChild(moon);*/
+            var moon = draw.bitmap("img/deathStar.png");
             moon.x = canvasWidth -250;
             moon.y = groundY - 450;
             moon.scaleX = 0.5;
@@ -73,10 +81,25 @@ var background = function (window) {
             }*/
             
             // TODO 3: Part 1 - Add a tree
-            tree = draw.bitmap("img/tree.png");
+            /*tree = draw.bitmap("img/tree.png");
             tree.x = canvasWidth;
             tree.y = groundY - 200;
-            background.addChild(tree);
+            tree.scaleX = 0.5;
+            tree.scaleY = 0.5;
+            background.addChild(tree);*/
+            xWing = draw.bitmap("img/Xwing.png");
+            xWing.x = canvasWidth;
+            xWing.y = groundY - 450;
+            xWing.scaleX = 0.5;
+            xWing.scaleY = 0.5;
+            background.addChild(xWing);
+
+            tieFighter = draw.bitmap("img/tieFighter.png");
+            tieFighter.x = canvasWidth + 500;
+            tieFighter.y = groundY - 450;
+            tieFighter.scaleX = 0.3;
+            tieFighter.scaleY = 0.3;
+            background.addChild(tieFighter);
             
         
         } // end of render function - DO NOT DELETE
@@ -91,12 +114,20 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 3: Part 2 - Move the tree!
-            tree.x = tree.x - 4;
+           /* tree.x = tree.x - 4;
             if (tree.x < -200) {
             tree.x = canvasWidth +300;
-            
-            // TODO 4: Part 2 - Parallax
-           /*for (var i = 0; i < buildings.length; i++){
+            }*/
+            xWing.x = xWing.x - 10;
+            if (xWing.x < -2000) {
+            xWing.x = canvasWidth + 1000;
+            }
+            tieFighter.x = tieFighter.x - 10;
+            if (tieFighter.x < -2000) {
+            tieFighter.x = canvasWidth + 1000;
+            }
+            /*// TODO 4: Part 2 - Parallax
+           for (var i = 0; i < buildings.length; i++){
             var building = buildings[i];
                 building.x -= - 3;
                 if(building.x < -100){
@@ -106,7 +137,7 @@ var background = function (window) {
             
                 
   // code to do something with each element
-}
+
 
     
             

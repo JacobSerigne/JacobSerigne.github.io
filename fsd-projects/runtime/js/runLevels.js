@@ -33,18 +33,20 @@ var runLevels = function (window) {
           sawBladeHitZone.addChild(obstacleImage);   
 
         }
-        function createEnemy(x,y, speed){
+        function createEnemy(x,y, speed, image, offsetX, offsetY, scale, damage){
         var enemy = game.createGameItem("enemy", 25);
-        var redSquare = draw.rect(50, 50, "red");
-        redSquare.x = -25;
-        redSquare.y = -25;
+        var redSquare = draw.bitmap(image)
+        redSquare.x = offsetX;
+        redSquare.y = offsetY;
+        redSquare.scaleX = scale;
+        redSquare.scaleY = scale;
         enemy.addChild(redSquare);
         enemy.x = x;
         enemy.y = y;
         game.addGameItem(enemy);
         enemy.velocityX = speed;
         enemy.onPlayerCollision = function () {
-          game.changeIntegrity(-10);
+          game.changeIntegrity(damage);
 
         };
         enemy.onProjectileCollision = function(){
@@ -54,39 +56,42 @@ var runLevels = function (window) {
           //enemy.FlyTo(x,y);
           }
         }
-         function createReward(x,y, speed){
+         function createReward(x,y, speed,image, offsetX, offsetY, scale){
         var reward = game.createGameItem("reward", 25);
-        var blueSquare = draw.rect(50, 50, "blue");
-        blueSquare.x = -25;
-        blueSquare.y = -25;
+        var blueSquare = draw.bitmap(image);
+        blueSquare.x = offsetX;
+        blueSquare.y = offsetY;
+        blueSquare.scaleX = scale;
+        blueSquare.scaleY = scale;
         reward.addChild(blueSquare);
         reward.x = x;
         reward.y = y;
         game.addGameItem(reward);
         reward.velocityX = speed;
         reward.onPlayerCollision = function () {
-          game.changeIntegrity(-10);
           game.increaseScore(100);
           reward.fadeOut();
-          startLevel();
+
 
 
         };
         }
-         function createMarker(x,y, speed){
+         function createMarker(x,y, speed, image, offsetX, offsetY, scale){
         var marker = game.createGameItem("marker", 25);
-        var yellowSquare = draw.rect(50, 50, "yellow");
-        yellowSquare.x = -25;
-        yellowSquare.y = -25;
+        var yellowSquare = draw.bitmap(image);
+        yellowSquare.x = offsetX;
+        yellowSquare.y = offsetY;
+        yellowSquare.scaleX = scale;
+        yellowSquare.scaleY = scale;
         marker.addChild(yellowSquare);
         marker.x = x;
         marker.y = y;
         game.addGameItem(marker);
         marker.velocityX = speed;
         marker.onPlayerCollision = function () {
-          game.changeIntegrity(-10);
-          game.increaseScore(100);
+          game.increaseScore(500);
           marker.fadeOut();
+          startLevel();
 
 
         };
@@ -95,22 +100,34 @@ var runLevels = function (window) {
 
 
 
-        //function calls
-        createSawBlade(450, groundY - 125, 50);
-        createSawBlade(600, groundY - 125, 20);
-       // createEnemy(400, groundY - 50, -3);
-       // createEnemy(400, groundY - 50, -5);
-        createReward(1000, groundY -100, -3);
-        createMarker(1500, groundY -100, -3 );
+
+
 
 
 
     function startLevel() {
       // TODO 13 goes below here
+      var level = levelData[currentLevel] //fetches the current level of the array and stores it in the level variable 
+      var levelObjects = level.gameItems;
+      for(i = 0;i < levelObjects.length; i++){
+        var element = levelObjects[i]; 
 
+        if(element.type === 'sawblade'){
+          createSawBlade(element.x, element.y, element.damage);
+        }
 
+        if(element.type === 'enemy'){
+          createEnemy(element.x, element.y, element.speed, element.image, element.offsetX, element.offsetY, element.scale, element.damage)
+        }
+        if(element.type === 'reward'){
+          createReward(element.x, element.y, element.speed, element.image, element.offsetX, element.offsetY, element.scale)
+                }
+        if(element.type === 'marker'){
+          createMarker(element.x, element.y, element.speed,element.image, element.offsetX, element.offsetY, element.scale)
+                }
+      }
 
-      //////////////////////////////////////////////
+      ///////////////////////////////////////////// /
       // DO NOT EDIT CODE BELOW HERE
       //////////////////////////////////////////////
       if (++currentLevel === levelData.length) {
